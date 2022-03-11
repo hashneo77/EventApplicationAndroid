@@ -16,7 +16,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText username;
     EditText password;
     Button signIn;
-    DBhelper dBhelper;
+    LoginDb loginDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,24 +25,27 @@ public class LoginActivity extends AppCompatActivity {
 
         username = findViewById(R.id.username1);
         password = findViewById(R.id.password1);
-        signIn = findViewById(R.id.signin1);
-        dBhelper = new DBhelper(this);
+        signIn = findViewById(R.id.signlogin);
+        loginDb = new LoginDb(this);
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
-                Intent i = new Intent(getApplicationContext(), EventActivity.class);
-                if (TextUtils.isEmpty(user) || TextUtils.isEmpty(pass)) {
-                    if (dBhelper.checkUsernameAndPassword(user, pass) == true) {
+
+                if (!TextUtils.isEmpty(user) || !TextUtils.isEmpty(pass)) {
+                    if (loginDb.checkUsernameAndPassword(user, pass) == true) {
                         Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                        startActivity(i);
+                        Intent i2 = new Intent(getApplicationContext(), EventActivity.class);
+                        startActivity(i2);
                     } else {
                         Toast.makeText(LoginActivity.this, "Username or password incorrect", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
+
+
         });
     }
 }

@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class EventActivity extends AppCompatActivity {
+public class EventActivity extends LoginActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
