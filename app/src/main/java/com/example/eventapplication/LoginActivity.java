@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (loginDb.checkUsernameAndPassword(user, pass) == true) {
                         Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent i2 = new Intent(getApplicationContext(), EventActivity.class);
+                        i2.putExtra("username",user);
                         startActivity(i2);
                     } else {
                         Toast.makeText(LoginActivity.this, "Username or password incorrect", Toast.LENGTH_SHORT).show();

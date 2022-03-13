@@ -8,6 +8,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.models.userprofile;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class LoginDb extends SQLiteOpenHelper {
 
     public static final String dbName = "eventapp.db";
@@ -19,7 +25,7 @@ public class LoginDb extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("create table  users(username TEXT primary key , password TEXT,firstname TEXT,lastname TEXT,email TEXT,org TEXT,phone TEXT)");
+        sqLiteDatabase.execSQL("create table users(username TEXT primary key , password TEXT,firstname TEXT,lastname TEXT,email TEXT,org TEXT,phone TEXT)");
     }
 
     @Override
@@ -41,6 +47,30 @@ public class LoginDb extends SQLiteOpenHelper {
         long result = db.insert("users",null,values);
         return result != -1;
 
+    }
+
+    public ArrayList<userprofile> fetchData(String user){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor usercursor = db.rawQuery("SELECT * FROM users where username = ?",new String[]{user});
+        // on below line we are creating a new array list.
+        ArrayList<userprofile> userprofileArrayList = new ArrayList<>();
+        if(usercursor.getCount()>0){
+            if (usercursor.moveToFirst()) {
+                do {
+                    // on below line we are adding the data from cursor to our array list.
+                    userprofileArrayList.add(new userprofile(usercursor.getString(0),
+                            usercursor.getString(4),
+                            usercursor.getString(6),
+                            usercursor.getString(5)));
+                } while (usercursor.moveToNext());
+                // moving our cursor to next.
+            }
+        }else
+            userprofileArrayList = null;
+        // at last closing our cursor
+        // and returning our array list.
+        usercursor.close();
+        return userprofileArrayList;
     }
 
     public Boolean checkUsername(String username){

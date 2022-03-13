@@ -5,6 +5,11 @@ plugins {
 android {
     compileSdk 32
 
+
+    dataBinding {
+        enabled = true
+    }
+
     defaultConfig {
         applicationId "com.example.eventapplication"
         minSdk 21

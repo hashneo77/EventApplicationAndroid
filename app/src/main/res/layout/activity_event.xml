@@ -1,12 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/customborder"
-    tools:context=".EventActivity">
+<layout>
+
+    <data>
+        <variable
+            name="userprofile"
+            type="String" />
+        <variable
+            name="userphone"
+            type="String" />
+        <variable
+            name="useremail"
+            type="String" />
+
+    </data>
 
 
-</LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/customborder"
+        tools:context=".EventActivity">
+
+
+        <ImageView
+            android:id="@+id/ivProfile"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/icon" />
+
+
+        <TextView
+            android:id="@+id/profilename"
+            android:paddingTop="10dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ivProfile"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:text="@{userprofile}"
+            android:textSize="22sp"
+            android:paddingBottom="10dp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/profileemail"
+                android:layout_width="150dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="25dp"
+                android:background="@drawable/back"
+                android:text="@{useremail}"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/profilephone"
+                android:layout_width="150dp"
+                android:layout_height="20dp"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:text="@{userphone}"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/back"
+                android:layout_alignParentRight="true"
+                android:textStyle="italic" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</layout>
