@@ -28,25 +28,25 @@ public class LoginActivity extends AppCompatActivity {
         signIn = findViewById(R.id.signlogin);
         loginDb = new LoginDb(this);
 
-        signIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String user = username.getText().toString();
-                String pass = password.getText().toString();
-
-                if (!TextUtils.isEmpty(user) || !TextUtils.isEmpty(pass)) {
-                    if (loginDb.checkUsernameAndPassword(user, pass) == true) {
-                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                        Intent i2 = new Intent(getApplicationContext(), EventActivity.class);
-                        i2.putExtra("username",user);
-                        startActivity(i2);
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Username or password incorrect", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-
-
-        });
+//        signIn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String user = username.getText().toString();
+//                String pass = password.getText().toString();
+//
+//                if (!TextUtils.isEmpty(user) || !TextUtils.isEmpty(pass)) {
+//                    if (loginDb.checkUsernameAndPassword(user, pass) == true) {
+//                        Intent i2 = new Intent(getApplicationContext(), EventActivity.class);
+//                        i2.putExtra("username",user);
+//                        startActivity(i2);
+//                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        Toast.makeText(LoginActivity.this, "Username or password incorrect", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            }
+//
+//
+//        });
     }
 }

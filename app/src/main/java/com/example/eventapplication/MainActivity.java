@@ -12,70 +12,43 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText userName,password,rePassword,email,phone,firstname,lastname,org;
-    Button signUp,signIn;
+    Button signIn,register;
+    EditText username,password;
     LoginDb loginDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        email = findViewById(R.id.email);
-        phone = findViewById(R.id.phone);
-        firstname = findViewById(R.id.firstname);
-        lastname = findViewById(R.id.lastname);
-        org = findViewById(R.id.org);
-        userName = findViewById(R.id.username);
-        password = findViewById(R.id.password);
-        rePassword = findViewById(R.id.repassword);
-        signIn = findViewById(R.id.signin);
-        signUp = findViewById(R.id.signup);
-
+        signIn = findViewById(R.id.start_signin);
+        register = findViewById(R.id.start_register);
+        username = findViewById(R.id.start_username);
+        password = findViewById(R.id.start_password);
         loginDb = new LoginDb(this);
-
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String user = userName.getText().toString();
-                String pass = password.getText().toString();
-                String repass = rePassword.getText().toString();
-                String first = firstname.getText().toString();
-                String last = lastname.getText().toString();
-                String ph = phone.getText().toString();
-                String emailId = email.getText().toString();
-                String organisation = org.getText().toString();
-
-                if(TextUtils.isEmpty(user)|| TextUtils.isEmpty(pass)|| TextUtils.isEmpty(repass) || TextUtils.isEmpty(first)|| TextUtils.isEmpty(last)|| TextUtils.isEmpty(ph) || TextUtils.isEmpty(emailId) || TextUtils.isEmpty(organisation))
-                    Toast.makeText(MainActivity.this ,"All fields are required",Toast.LENGTH_SHORT).show();
-                else{
-                    if(pass.equals(repass)){
-                        if(loginDb.checkUsername(user)==false){
-                            Boolean insert = loginDb.insertData(user,pass,first,last,emailId,ph,organisation);
-                            if(insert==true){
-                                Toast.makeText(MainActivity.this,"User created Successfully",Toast.LENGTH_LONG).show();
-                                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
-                                startActivity(i);
-                            }
-                            else
-                                Toast.makeText(MainActivity.this,"Registration Failed",Toast.LENGTH_SHORT).show();
-
-                        }else{
-                            Toast.makeText(MainActivity.this,"User Already Registered",Toast.LENGTH_SHORT).show();
-                        }
-                    }else{
-                        Toast.makeText(MainActivity.this,"Passwords do not Match",Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-            }
-        });
-
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+                String user = username.getText().toString();
+                String pass = password.getText().toString();
+
+                if (!TextUtils.isEmpty(user) || !TextUtils.isEmpty(pass)) {
+                    if (loginDb.checkUsernameAndPassword(user, pass) == true) {
+                        Intent i2 = new Intent(getApplicationContext(), EventActivity.class);
+                        i2.putExtra("username",user);
+                        startActivity(i2);
+                        Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, "Username or password incorrect", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),RegistrationActivity.class);
                 startActivity(i);
             }
         });

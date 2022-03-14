@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/customborder"
+    tools:context=".NewEventActivity">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:background="@drawable/tableborder"
+            android:layout_gravity="center"
+            android:gravity="center">
+            <TextView
+                android:paddingTop="10dp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                android:text="My Events"
+                android:textSize="22sp"
+                android:paddingBottom="10dp"
+                android:textStyle="bold" />
+        </TableRow>
+        <TableRow
+            android:background="@drawable/tableborder">
+            <TableRow>
+                <TextView
+                    android:layout_weight="1"
+                    android:text="Event Name:"
+                    android:layout_column="0"/>
+
+                <EditText
+                    android:id="@+id/eventname"
+                    android:hint="Event Name"
+                    android:layout_column="1"
+                    android:layout_weight="1" />
+            </TableRow>
+        </TableRow>
+
+        <TableRow
+            android:background="@drawable/tableborder">
+            <TableRow>
+                <TextView
+                    android:layout_weight="1"
+                    android:text="Event Time:"
+                    android:layout_column="0"/>
+
+                <EditText
+                    android:id="@+id/eventtime"
+                    android:hint="HH:mm"
+                    android:layout_column="1"
+                    android:layout_weight="1" />
+            </TableRow>
+        </TableRow>
+        <TableRow
+            android:background="@drawable/tableborder">
+            <TableRow>
+                <TextView
+                    android:layout_weight="1"
+                    android:text="Event Info:"
+                    android:layout_column="0"/>
+
+                <EditText
+                    android:id="@+id/eventinfo"
+                    android:hint="Information"
+                    android:layout_column="1"
+                    android:layout_weight="1" />
+            </TableRow>
+        </TableRow>
+        <TableRow
+            android:background="@drawable/tableborder">
+            <TableRow>
+                <TextView
+                    android:layout_weight="1"
+                    android:text="Event Venue:"
+                    android:layout_column="0"/>
+
+                <EditText
+                    android:id="@+id/eventvenue"
+                    android:hint="Venue"
+                    android:layout_column="1"
+                    android:layout_weight="1" />
+            </TableRow>
+        </TableRow>
+
+        <TableRow
+            android:background="@drawable/tableborder">
+            <TableRow>
+                <TextView
+                    android:layout_weight="1"
+                    android:text="Event Date:"
+                    android:layout_column="0"/>
+
+                <EditText
+                    android:id="@+id/eventdate"
+                    android:hint="dd/MM/yyyy"
+                    android:layout_column="1"
+                    android:layout_weight="1" />
+            </TableRow>
+        </TableRow>
+
+        <TableRow>
+            <Button android:text="Add"
+                android:id="@+id/addnewevent">
+            </Button>
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>
