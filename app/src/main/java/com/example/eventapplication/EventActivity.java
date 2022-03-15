@@ -31,10 +31,11 @@ public class EventActivity extends AppCompatActivity {
         ActivityEventBinding activityEventBinding = DataBindingUtil.setContentView(this,R.layout.activity_event);
         addEvent = findViewById(R.id.addevent);
         editProfile = findViewById(R.id.editprofile);
-        listView = findViewById(R.id.list_item);
+        listView = findViewById(R.id.list_events);
         deleteEvent = findViewById(R.id.dltevent);
         logout = findViewById(R.id.profilelogout);
         loginDb = new LoginDb(this);
+        eventDb = new EventDb(this);
         ArrayList<userprofile> userprofileArrayList = new ArrayList<>();
         ArrayList<events> eventsArrayList = null;
 
@@ -56,14 +57,14 @@ public class EventActivity extends AppCompatActivity {
 
 //        viewdata(user);
 
-//        eventsArrayList = eventDb.readEventsData(user);
-//        ArrayList<String> eventNames = new ArrayList();
-//        if(eventsArrayList.size()>0){
-//            for(events event :eventsArrayList)
-//                eventNames.add(event.getEventName());
-//        }
-//        arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,eventNames);
-//        listView.setAdapter(arrayAdapter);
+        eventsArrayList = eventDb.readEventsData(user);
+        ArrayList<String> eventNames = new ArrayList();
+        if(eventsArrayList.size()>0){
+            for(events event :eventsArrayList)
+                eventNames.add(event.getEventName());
+        }
+        arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,eventNames);
+        listView.setAdapter(arrayAdapter);
 
 
         addEvent.setOnClickListener(new View.OnClickListener() {
